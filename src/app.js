@@ -1,5 +1,5 @@
 // Builds the Express app. Kept separate from server.js so tests can use it without opening a port.
-const path = require('path');
+const path = require('node:path');
 const express = require('express');
 const TaskService = require('./services/taskService');
 const taskRoutes = require('./routes/tasks');
