@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>Unit Task Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="main.css" />
@@ -17,12 +18,15 @@
 
     <h3>Add a task</h3>
     <form id="task-form">
+        <label for="title">Title</label>
         <input id="title" placeholder="Task title" required maxlength="100">
+        <label for="priority">Priority</label>
         <select id="priority">
             <option value="low">Low</option>
             <option value="medium" selected>Medium</option>
             <option value="high">High</option>
         </select>
+        <label for="dueDate">Due date</label>
         <input id="dueDate" type="date">
         <button type="submit">Add</button>
     </form>

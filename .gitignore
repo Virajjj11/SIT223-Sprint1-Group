@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 reports/
+dist/
 .scannerwork/
 .vs/
 .DS_Store

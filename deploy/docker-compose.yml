@@ -1,0 +1,14 @@
+# One compose file for every environment. Environment-specific values come from
+# deploy/staging.env or deploy/production.env; IMAGE_TAG comes from Jenkins.
+services:
+  app:
+    image: unit-task-tracker:${IMAGE_TAG:?IMAGE_TAG must be set}
+    container_name: ${CONTAINER_NAME}
+    environment:
+      APP_ENV: ${APP_ENV}
+    ports:
+      - "${HOST_PORT}:3000"
+    mem_limit: ${MEMORY_LIMIT}
+    restart: unless-stopped
+    labels:
+      environment: ${APP_ENV}

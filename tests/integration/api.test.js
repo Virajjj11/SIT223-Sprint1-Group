@@ -76,3 +76,10 @@ describe('Task API', () => {
     expect((await request(app).get('/nope')).status).toBe(404);
   });
 });
+
+describe('Security headers', () => {
+  test('does not expose the X-Powered-By header', async () => {
+    const res = await request(createApp(new TaskService())).get('/health');
+    expect(res.headers['x-powered-by']).toBeUndefined();
+  });
+});

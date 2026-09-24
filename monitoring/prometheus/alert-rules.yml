@@ -1,0 +1,37 @@
+groups:
+  - name: unit-task-tracker
+    rules:
+      - alert: TrackerDown
+        expr: up{job=~"tracker-.*"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.job }} is down"
+          description: "Prometheus has not been able to scrape {{ $labels.job }} for 30 seconds."
+
+      - alert: HighErrorRate
+        expr: sum by (job) (increase(http_requests_total{status=~"5.."}[1m])) > 5
+        labels:
+          severity: critical
+        annotations:
+          summary: "High 5xx error rate on {{ $labels.job }}"
+          description: "{{ $value | printf \"%.0f\" }} server errors in the last minute."
+
+      - alert: SlowResponses
+        expr: histogram_quantile(0.95, sum by (le, job) (rate(http_request_duration_seconds_bucket[5m]))) > 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Slow responses on {{ $labels.job }}"
+          description: "95th percentile response time is above 500 ms."
+
+      - alert: HighMemoryUsage
+        expr: process_resident_memory_bytes{job=~"tracker-.*"} > 200000000
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory use on {{ $labels.job }}"
+          description: "The Node.js process is using more than 200 MB of memory."

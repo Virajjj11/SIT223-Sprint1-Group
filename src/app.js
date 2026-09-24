@@ -8,6 +8,8 @@ const pkg = require('../package.json');
 
 function createApp(service = new TaskService()) {
   const app = express();
+  // Security: do not reveal that the server runs Express (x-powered-by header)
+  app.disable('x-powered-by');
   const startedAt = Date.now();
 
   app.use(express.json());

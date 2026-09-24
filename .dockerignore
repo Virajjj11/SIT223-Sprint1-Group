@@ -1,8 +1,12 @@
 node_modules
 coverage
 reports
+dist
 tests
-.git
+deploy
 monitoring
+.git
+.scannerwork
 *.md
 Jenkinsfile
+sonar-project.properties
