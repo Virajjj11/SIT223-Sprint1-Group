@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Task Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="main.css" />
+</head>
+<body>
+    <div>
+        <img src="logo.svg" alt="Deakin" width="120" height="126">
+    </div>
+    <h1>Unit Task Tracker</h1>
+    <p><a href="index.html">Back to unit details</a></p>
+
+    <h3>Progress</h3>
+    <p id="summary">Loading...</p>
+
+    <h3>Add a task</h3>
+    <form id="task-form">
+        <input id="title" placeholder="Task title" required maxlength="100">
+        <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+        </select>
+        <input id="dueDate" type="date">
+        <button type="submit">Add</button>
+    </form>
+    <p id="error" style="color: darkred;"></p>
+
+    <h3>Tasks</h3>
+    <table style="width:100%">
+        <thead><tr><th>Title</th><th>Priority</th><th>Due</th><th>Status</th><th></th></tr></thead>
+        <tbody id="task-list"></tbody>
+    </table>
+
+    <script src="tasks.js"></script>
+</body>
+</html>
